@@ -1,10 +1,11 @@
 import React from "react";
+import Layout from "../../commons/Layout";
 
 const Homepage = () => {
 	return (
-		<div>
+		<Layout>
 			Homepage
-		</div>
+		</Layout>
 	)
 }
 
