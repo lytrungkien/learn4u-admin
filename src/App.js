@@ -1,4 +1,5 @@
 import './App.css';
+import 'antd/dist/antd.css';
 import Homepage from './components/Home';
 import AdminAccount from './components/AdminAccount/index';
 
