@@ -238,7 +238,7 @@ const List = ({ data }) => {
 			<Modal
 				title="Delete lesson"
 				visible={isModalDelete}
-				onCancel={() => setIsModalEdit(false)}
+				onCancel={() => setIsModalDelete(false)}
 				okText="Delete"
 				onOk={handleDelete}
 				width={320}
