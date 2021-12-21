@@ -14,32 +14,31 @@ const cx = cn.bind(styles);
 const Navbar = () => {
 	const location = useLocation();
 	const history = useHistory();
-	console.log(location);
 
 	const navbar = [
 		{
 			id: 1,
-			name: 'Quản lý người dùng',
+			name: 'Manage users',
 			path: '/',
 		},
 		{
 			id: 2,
-			name: 'Quản lý từ vựng',
+			name: 'Manage vocabulary',
 			path: '/manage-vocab',
 		},
 		{
 			id: 3,
-			name: 'Quản lý ngữ pháp',
+			name: 'Manage grammar',
 			path: '/manage-grammar',
 		},
 		{
 			id: 4,
-			name: 'Quản lý hội thoại',
+			name: 'Manage conversation',
 			path: '/manage-conversation',
 		},
 		{
 			id: 5,
-			name: 'Tài khoản quản trị viên',
+			name: 'Admin account',
 			path: '/admin-account',
 		}
 	]

@@ -13,6 +13,7 @@ import ManageUser from './components/ManageUser';
 import Vocab from './components/Vocab';
 import Grammar from './components/Grammar';
 import Conversation from './components/Conversation';
+import Login from './components/Login/Login';
 
 function App() {
 	return (
@@ -32,6 +33,9 @@ function App() {
 				</Route>
 				<Route path="/admin-account">
 					<AdminAccount />
+				</Route>
+				<Route path="/login">
+					<Login />
 				</Route>
 			</Switch>
 		</Router>
