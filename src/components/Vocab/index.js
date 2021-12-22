@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import ComingSoon from "../../commons/Comingsoon";
 import Layout from "../../commons/Layout";
 import styles from './index.module.scss';
 import cn from 'classnames/bind';
@@ -23,7 +22,7 @@ const Vocab = () => {
 
 	const getData = async () => {
 		try {
-			const res = await axios.get(`http://20.212.154.207:81/api/Lesson/GetLessonListByType/2`, { headers });
+			const res = await axios.get(`${URL}/api/Lesson/GetLessonListByType/2`, { headers });
 			if (res.status === 200) {
 				console.log(res.data);
 				setListVocab(res.data);
@@ -38,7 +37,7 @@ const Vocab = () => {
 			<div className={cx("vocab")}>
 				<div className={cx("vocab-top")}>
 					<div className={cx("title")}>
-						Từ vựng
+						Vocabulary
 					</div>
 					<Search />
 				</div>

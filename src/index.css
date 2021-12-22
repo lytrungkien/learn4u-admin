@@ -14,5 +14,5 @@ code {
 }
 
 .ant-row {
-  align-items: center;
+  align-items: flex-start;
 }
