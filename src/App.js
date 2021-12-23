@@ -14,6 +14,9 @@ import Vocab from './components/Vocab';
 import Grammar from './components/Grammar';
 import Conversation from './components/Conversation';
 import Login from './components/Login/Login';
+import VocabLessonDetail from './components/Vocab/VocabLessonDetail/VocabLessonDetail';
+import AddVocab from './components/Vocab/AddVocab/AddVocab';
+import EditVocab from './components/Vocab/EditVocab/EditVocab';
 
 function App() {
 	return (
@@ -22,13 +25,13 @@ function App() {
 				<Route exact path="/">
 					<ManageUser />
 				</Route>
-				<Route path="/manage-vocab">
+				<Route exact path="/manage-vocab">
 					<Vocab />
 				</Route>
-				<Route path="/manage-grammar">
+				<Route exact path="/manage-grammar">
 					<Grammar />
 				</Route>
-				<Route path="/manage-conversation">
+				<Route exact path="/manage-conversation">
 					<Conversation />
 				</Route>
 				<Route path="/admin-account">
@@ -36,6 +39,15 @@ function App() {
 				</Route>
 				<Route path="/login">
 					<Login />
+				</Route>
+				<Route exact path="/manage-vocab/:id">
+					<VocabLessonDetail />
+				</Route>
+				<Route path="/manage-vocab/:id/add-vocab">
+					<AddVocab />
+				</Route>
+				<Route path="/manage-vocab/:id/edit-vocab">
+					<EditVocab />
 				</Route>
 			</Switch>
 		</Router>

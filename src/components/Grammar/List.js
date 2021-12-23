@@ -98,7 +98,7 @@ const List = ({ data, title, type }) => {
 			<div className={cx("top")}>
 				<div className={cx("title")}>{title}</div>
 				<div className={cx("create")} onClick={() => setIsModalCreate(true)}>
-					<PlusCircleOutlined /> Create
+					<PlusCircleOutlined /> Add
 				</div>
 			</div>
 			<div className={cx("table")}>

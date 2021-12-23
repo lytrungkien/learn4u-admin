@@ -60,7 +60,11 @@ const Navbar = () => {
 				navbar.map((item, id) => (
 					<div
 						key={id}
-						className={cx("item", location.pathname === item.path ? "active" : "")}
+						className={cx("item",
+							(location.pathname === item.path) ? "active" :
+								(location.pathname?.includes(item.path) && item.path !== "/") ? "active" : ""
+						)
+						}
 						onClick={() => {
 							history.push(`${item.path}`)
 						}}

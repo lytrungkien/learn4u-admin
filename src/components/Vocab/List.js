@@ -10,6 +10,7 @@ import {
 } from "@ant-design/icons";
 import axios from "axios";
 import { URL, headers } from "../../consts";
+import { useHistory } from "react-router-dom";
 
 const cx = cn.bind(styles);
 
@@ -19,6 +20,7 @@ const List = ({ data }) => {
 	const [lesson, setLesson] = useState();
 	const [form] = Form.useForm();
 	const [isModalDelete, setIsModalDelete] = useState(false);
+	const history = useHistory();
 
 	useEffect(() => form.resetFields(), [lesson]);
 
@@ -98,7 +100,7 @@ const List = ({ data }) => {
 			<div className={cx("top")}>
 				<div className={cx("title")}></div>
 				<div className={cx("create")} onClick={() => setIsModalCreate(true)}>
-					<PlusCircleOutlined /> Create new lesson
+					<PlusCircleOutlined /> Add new lesson
 				</div>
 			</div>
 			<div className={cx("table")}>
@@ -111,10 +113,10 @@ const List = ({ data }) => {
 						Lesson id
 					</Col>
 					<Col span={1}></Col>
-					<Col span={5}>
+					<Col span={4}>
 						Title
 					</Col>
-					<Col span={3}>Lesson code</Col>
+					<Col span={4}>Lesson code</Col>
 					<Col span={6}>
 
 					</Col>
@@ -132,10 +134,10 @@ const List = ({ data }) => {
 							{item.lessonId}
 						</Col>
 						<Col span={1}></Col>
-						<Col span={5}>
+						<Col span={4}>
 							{item.name}
 						</Col>
-						<Col span={3}>{item.lessonCode}</Col>
+						<Col span={4}>{item.lessonCode}</Col>
 						<Col span={6}>
 							<div className={cx("group-button")}>
 								<div
@@ -154,7 +156,15 @@ const List = ({ data }) => {
 									}}
 								><DeleteOutlined /> Delete
 								</div>
-								<div className={cx("detail")}><RightOutlined /> Detail</div>
+								<div
+									className={cx("detail")}
+									onClick={() => history.push({
+										pathname: `/manage-vocab/${item.lessonId}`,
+										state: { lessonInfo: item },
+									})}
+								>
+									<RightOutlined /> Detail
+								</div>
 							</div>
 						</Col>
 					</Row>

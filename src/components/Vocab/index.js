@@ -6,15 +6,13 @@ import { Col, Row } from "antd";
 import List from "./List";
 import Search from "../../commons/Search/Search";
 import axios from 'axios';
-import { URL } from '../../consts/index';
+import { URL, headers } from '../../consts/index';
 
 const cx = cn.bind(styles);
 
 
 const Vocab = () => {
 	const [listVocab, setListVocab] = useState();
-	const token = window.localStorage.getItem("token-lingo-admin");
-	const headers = { Authorization: `Bearer ${token}` };
 
 	useEffect(() => {
 		getData();
@@ -24,7 +22,6 @@ const Vocab = () => {
 		try {
 			const res = await axios.get(`${URL}/api/Lesson/GetLessonListByType/2`, { headers });
 			if (res.status === 200) {
-				console.log(res.data);
 				setListVocab(res.data);
 			}
 		} catch (err) {

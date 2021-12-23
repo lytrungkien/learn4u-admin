@@ -6,7 +6,7 @@ const ManageUser = () => {
 	return (
 		<Layout>
 			<div style={{ fontSize: '28px', fontWeight: '700' }}>
-				Quản lý người dùng
+				Manage users
 			</div>
 			<ComingSoon />
 		</Layout>
