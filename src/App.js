@@ -17,6 +17,12 @@ import Login from './components/Login/Login';
 import VocabLessonDetail from './components/Vocab/VocabLessonDetail/VocabLessonDetail';
 import AddVocab from './components/Vocab/AddVocab/AddVocab';
 import EditVocab from './components/Vocab/EditVocab/EditVocab';
+import GrammarLessonDetail from './components/Grammar/GrammarLesson/GrammarDetail';
+import AddGrammar from './components/Grammar/GrammarLesson/AddGrammarLesson';
+import EditGrammarLesson from './components/Grammar/GrammarLesson/EditGrammarLesson';
+import TestDetail from './components/Grammar/GrammarTest/GrammarTestDetail';
+import AddGrammarTest from './components/Grammar/GrammarTest/AddGrammarTest';
+import EditGrammarTest from './components/Grammar/GrammarTest/EditGrammarTest';
 
 function App() {
 	return (
@@ -30,6 +36,24 @@ function App() {
 				</Route>
 				<Route exact path="/manage-grammar">
 					<Grammar />
+				</Route>
+				<Route exact path="/manage-grammar/lesson/:id">
+					<GrammarLessonDetail />
+				</Route>
+				<Route path="/manage-grammar/lesson/:id/add-lesson">
+					<AddGrammar />
+				</Route>
+				<Route path="/manage-grammar/lesson/:id/edit-lesson">
+					<EditGrammarLesson />
+				</Route>
+				<Route exact path="/manage-grammar/test/:id">
+					<TestDetail />
+				</Route>
+				<Route exact path="/manage-grammar/test/:id/add-sentence">
+					<AddGrammarTest />
+				</Route>
+				<Route exact path="/manage-grammar/test/:id/edit-sentence">
+					<EditGrammarTest />
 				</Route>
 				<Route exact path="/manage-conversation">
 					<Conversation />

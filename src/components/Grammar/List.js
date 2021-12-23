@@ -10,6 +10,7 @@ import {
 } from "@ant-design/icons";
 import axios from "axios";
 import { URL, headers } from "../../consts";
+import { useHistory } from "react-router-dom";
 
 const cx = cn.bind(styles);
 
@@ -19,6 +20,7 @@ const List = ({ data, title, type }) => {
 	const [lesson, setLesson] = useState();
 	const [form] = Form.useForm();
 	const [isModalDelete, setIsModalDelete] = useState(false);
+	const history = useHistory();
 
 	useEffect(() => form.resetFields(), [lesson]);
 
@@ -148,7 +150,10 @@ const List = ({ data, title, type }) => {
 									}}
 								><DeleteOutlined />
 								</div>
-								<div className={cx("detail")}><RightOutlined /></div>
+								<div 
+								className={cx("detail")}
+								onClick={() => history.push(`/manage-grammar/${type === 0 ? "lesson" : "test"}/${item.lessonId}`)}
+								><RightOutlined /></div>
 							</div>
 						</Col>
 					</Row>
