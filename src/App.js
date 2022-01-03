@@ -23,6 +23,7 @@ import EditGrammarLesson from './components/Grammar/GrammarLesson/EditGrammarLes
 import TestDetail from './components/Grammar/GrammarTest/GrammarTestDetail';
 import AddGrammarTest from './components/Grammar/GrammarTest/AddGrammarTest';
 import EditGrammarTest from './components/Grammar/GrammarTest/EditGrammarTest';
+import DialogueDetail from './components/Conversation/DialogueDetail';
 
 function App() {
 	return (
@@ -55,8 +56,11 @@ function App() {
 				<Route exact path="/manage-grammar/test/:id/edit-sentence">
 					<EditGrammarTest />
 				</Route>
-				<Route exact path="/manage-conversation">
+				<Route exact path="/manage-dialogue">
 					<Conversation />
+				</Route>
+				<Route path="/manage-dialogue/:id">
+					<DialogueDetail />
 				</Route>
 				<Route path="/admin-account">
 					<AdminAccount />

@@ -34,7 +34,7 @@ const Navbar = () => {
 		{
 			id: 4,
 			name: 'Manage conversation',
-			path: '/manage-conversation',
+			path: '/manage-dialogue',
 		},
 		{
 			id: 5,
