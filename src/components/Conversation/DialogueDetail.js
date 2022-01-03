@@ -6,7 +6,7 @@ import { useHistory, useLocation } from "react-router-dom";
 import Search from "../../commons/Search/Search";
 import axios from "axios";
 import { URL, headers } from "../../consts";
-import { Col, Row, Form, message, Input, Modal, Button, Spin } from "antd";
+import { Col, Row, Form, message, Input, Modal, Button, Spin, Empty } from "antd";
 import {
 	DeleteOutlined,
 	EditOutlined,
@@ -42,11 +42,12 @@ const DialogueDetail = () => {
 	}, [lessonInfo]);
 
 	const getLessonById = async () => {
+		setLoading(true);
 		try {
 			const res = await axios.get(`${URL}/api/Admin/GetLesson/${id}`, { headers });
 			if (res.status === 200) {
-				console.log(res)
 				setLessonInfo(res.data);
+				setLoading(false)
 			}
 		} catch (err) {
 			console.log(err);
@@ -58,6 +59,7 @@ const DialogueDetail = () => {
 		try {
 			const res = await axios.get(`${URL}/api/Lesson/GetLessonContent/4/${lessonInfo?.lessonCode}`, { headers });
 			if (res.status === 200) {
+				console.log(res)
 				setLessonDetail(res.data);
 				setLoading(false);
 			}
@@ -86,12 +88,25 @@ const DialogueDetail = () => {
 			<div className={cx("detail-page")}>
 				<div className={cx("top")}>
 					<div className={cx("title")}>{lessonInfo?.name}</div>
+					<div className={cx("subTitle")}>{lessonInfo?.lessonId}</div>
 				</div>
-
-				<div className={cx("create")} onClick={() => history.push(`/manage-vocab/${lessonInfo?.lessonId}/add-vocab`)}>
-					<PlusCircleOutlined /> Add new Vocabulary
-				</div>
-
+				{!loading ? lessonDetail ? (
+					<div className={cx("group-button")}>
+						<span className={cx("edit")}><EditOutlined /> Edit</span>
+						<span className={cx("delete")}><DeleteOutlined /> Delete</span>
+					</div>
+				) : (
+					<div>
+						<div className={cx("create")} onClick={() => history.push(`/manage-vocab/${lessonInfo?.lessonId}/add-vocab`)}>
+							<PlusCircleOutlined /> Add lesson content
+						</div>
+						<div><Empty /></div>
+					</div>
+				) : (
+					<div style={{ textAlign: 'center' }}>
+						<Spin />
+					</div>
+				)}
 			</div>
 
 			<Modal
