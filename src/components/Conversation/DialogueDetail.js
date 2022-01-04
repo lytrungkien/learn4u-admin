@@ -15,6 +15,7 @@ import {
 } from "@ant-design/icons";
 import sound from "../../images/sound.svg";
 import { useParams } from "react-router-dom";
+import Content from "./Content";
 
 const cx = cn.bind(styles);
 
@@ -22,16 +23,10 @@ const DialogueDetail = () => {
 	const location = useLocation();
 	const [lessonDetail, setLessonDetail] = useState();
 	const history = useHistory();
-	const [word, setWord] = useState();
-	const [isModalCreate, setIsModalCreate] = useState(false);
-	const [isModalEdit, setIsModalEdit] = useState(false);
-	const [form] = Form.useForm();
 	const [isModalDelete, setIsModalDelete] = useState(false);
 	const [lessonInfo, setLessonInfo] = useState();
 	const { id } = useParams();
 	const [loading, setLoading] = useState(true);
-
-	useEffect(() => form.resetFields(), [word]);
 
 	useEffect(() => {
 		getLessonById();
@@ -42,12 +37,10 @@ const DialogueDetail = () => {
 	}, [lessonInfo]);
 
 	const getLessonById = async () => {
-		setLoading(true);
 		try {
 			const res = await axios.get(`${URL}/api/Admin/GetLesson/${id}`, { headers });
 			if (res.status === 200) {
 				setLessonInfo(res.data);
-				setLoading(false)
 			}
 		} catch (err) {
 			console.log(err);
@@ -70,7 +63,7 @@ const DialogueDetail = () => {
 
 	const handleDelete = async () => {
 		try {
-			const res = await axios.delete(`${URL}/api/Admin/delete-vocabulary/${word.id}`, { headers });
+			const res = await axios.delete(`${URL}/api/Admin/delete-speaking-dialogue/${lessonDetail.id}`, { headers });
 			if (res.status === 200) {
 				message.success("Delete successfully!");
 				window.location.reload();
@@ -90,19 +83,34 @@ const DialogueDetail = () => {
 					<div className={cx("title")}>{lessonInfo?.name}</div>
 					<div className={cx("subTitle")}>{lessonInfo?.lessonId}</div>
 				</div>
-				{!loading ? lessonDetail ? (
-					<div className={cx("group-button")}>
-						<span className={cx("edit")}><EditOutlined /> Edit</span>
-						<span className={cx("delete")}><DeleteOutlined /> Delete</span>
+				{!loading ? (lessonDetail ? (
+					<div>
+						<div className={cx("group-button")}>
+							<span
+								className={cx("edit")}
+								onClick={() => {
+									history.push({
+										pathname: `/manage-dialogue/${lessonInfo?.lessonId}/edit-content`,
+										state: { lessonCode: lessonInfo?.lessonCode }
+									})
+								}}
+							><EditOutlined /> Edit</span>
+							<span
+								className={cx("delete")}
+								onClick={() => setIsModalDelete(true)}
+							><DeleteOutlined /> Delete</span>
+						</div>
+						<Content item={lessonDetail} />
 					</div>
+
 				) : (
 					<div>
-						<div className={cx("create")} onClick={() => history.push(`/manage-vocab/${lessonInfo?.lessonId}/add-vocab`)}>
+						<div className={cx("create")} onClick={() => history.push(`/manage-dialogue/${lessonInfo?.lessonId}/add-content`)}>
 							<PlusCircleOutlined /> Add lesson content
 						</div>
 						<div><Empty /></div>
 					</div>
-				) : (
+				)) : (
 					<div style={{ textAlign: 'center' }}>
 						<Spin />
 					</div>
@@ -110,14 +118,14 @@ const DialogueDetail = () => {
 			</div>
 
 			<Modal
-				title="Delete lesson"
+				title="Delete lesson content"
 				visible={isModalDelete}
 				onCancel={() => setIsModalDelete(false)}
 				okText="Delete"
 				onOk={handleDelete}
-				width={320}
+				width={420}
 			>
-				<div>Are you sure you want to delete this word?</div>
+				<div>Are you sure you want to delete this lesson content?</div>
 			</Modal>
 		</Layout>
 	)

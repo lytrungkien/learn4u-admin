@@ -14,9 +14,10 @@ const cx = cn.bind(styles);
 const EditDialogue = () => {
 	const history = useHistory();
 	const location = useLocation();
-	const { lessonCode } = useParams();
+	const { id } = useParams();
 	const [loading, setLoading] = useState({ data: true, image: false, audio: false });
 	const [lessonInfo, setLessonInfo] = useState();
+	const lessonCode = location.state.lessonCode;
 	const [formData, setFormData] = useState({
 		"id": "",
 		"lessonCode": "",
@@ -31,7 +32,7 @@ const EditDialogue = () => {
 
 	useEffect(() => {
 		getLessonInfo();
-	}, [lessonCode]);
+	}, [id]);
 
 	const getLessonInfo = async () => {
 		setLoading({ ...loading, data: true });
@@ -39,6 +40,7 @@ const EditDialogue = () => {
 			const res = await axios.get(`${URL}/api/Lesson/GetLessonContent/4/${lessonCode}`, { headers });
 			if (res.status === 200) {
 				setLessonInfo(res.data);
+				console.log(res.data);
 				const lesson = res.data;
 				setFormData({
 					"id": lesson.id,
@@ -63,7 +65,7 @@ const EditDialogue = () => {
 		try {
 			const res = await axios.put(`${URL}/api/Admin/update-speaking-dialogue`, formData, { headers });
 			if (res.status === 200) {
-				history.push(`/manage-dialogue}`);
+				history.push(`/manage-dialogue/${id}`);
 				window.location.reload();
 			}
 		} catch (err) {
@@ -111,10 +113,6 @@ const EditDialogue = () => {
 		});
 	};
 
-	function CustomHTMLElement(props) {
-		return <div dangerouslySetInnerHTML={{ __html: lessonInfo?.transcript }} />
-	}
-
 	return (
 		<Layout>
 			{loading.data ? (<div style={{ textAlign: 'center' }}>
@@ -122,7 +120,7 @@ const EditDialogue = () => {
 			</div>) : (
 				<div className={cx("editVocab")}>
 					<div className={cx("container")}>
-						<div className={cx("pageTitle")}>Dialogue detail</div>
+						<div className={cx("pageTitle")}>Edit Dialogue Content</div>
 						<div className={cx("body")}>
 							<div className={cx("left")}>
 								<div className={cx("oneField")}>
@@ -155,16 +153,12 @@ const EditDialogue = () => {
 								<div className={cx("oneField")}>
 									<div className={cx("title")}>Transcript</div>
 									<div className={cx("description")}>Dialogue content</div>
-									<CustomHTMLElement
-										className={cx("input")}
-										customHtml={`<input id='test' type='text' placeholder='Enter text' value='${lessonInfo.transcript}' />`}
-									/>
-									{/* <div
-										dangerouslySetInnerHTML={{ __html: lessonInfo.transcript }}
+									<textarea
+										defaultValue={lessonInfo.transcript}
 										className={cx("input")}
 										onChange={(e) => setFormData({ ...formData, transcript: e.target.value })}
 										rows={15}
-									/> */}
+									/>
 								</div>
 
 								<div className={cx("oneField")}>
@@ -200,7 +194,7 @@ const EditDialogue = () => {
 						<span
 							className={cx("button")}
 							style={{ background: "#000000" }}
-							onClick={() => history.push(`/manage-dialogue}`)}
+							onClick={() => history.push(`/manage-dialogue/${lessonInfo.lessonId}`)}
 						>
 							CANCEL
 						</span>

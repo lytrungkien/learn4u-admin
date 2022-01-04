@@ -6,7 +6,7 @@ import { Col, Row } from "antd";
 import List from "./List";
 import Search from "../../commons/Search/Search";
 import axios from 'axios';
-import { URL, headers } from '../../consts/index';
+import { URL } from '../../consts/index';
 import searchIcon from '../../images/searchIcon.svg';
 
 const cx = cn.bind(styles);
@@ -15,6 +15,8 @@ const cx = cn.bind(styles);
 const ManageUser = () => {
 	const [listVocab, setListVocab] = useState();
 	const [searchKey, setSearchKey] = useState();
+	const token = window.localStorage.getItem("token-lingo-admin");
+	const headers = { Authorization: `Bearer ${token}` };
 
 	useEffect(() => {
 		getData();

@@ -24,6 +24,8 @@ import TestDetail from './components/Grammar/GrammarTest/GrammarTestDetail';
 import AddGrammarTest from './components/Grammar/GrammarTest/AddGrammarTest';
 import EditGrammarTest from './components/Grammar/GrammarTest/EditGrammarTest';
 import DialogueDetail from './components/Conversation/DialogueDetail';
+import AddContent from './components/Conversation/AddContent';
+import EditDialogue from './components/Conversation/EditDialogue';
 
 function App() {
 	return (
@@ -59,8 +61,14 @@ function App() {
 				<Route exact path="/manage-dialogue">
 					<Conversation />
 				</Route>
-				<Route path="/manage-dialogue/:id">
+				<Route exact path="/manage-dialogue/:id">
 					<DialogueDetail />
+				</Route>
+				<Route path="/manage-dialogue/:id/add-content">
+					<AddContent />
+				</Route>
+				<Route path="/manage-dialogue/:id/edit-content">
+					<EditDialogue />
 				</Route>
 				<Route path="/admin-account">
 					<AdminAccount />

@@ -112,13 +112,13 @@ const List = ({ data }) => {
 								><DeleteOutlined /> Delete
 								</div>
 								<div
-									className={cx("edit")}
+									className={cx(item.isBlocked ? "detail" : "edit")}
 									onClick={() => {
 										setLesson(item);
 										setIsModalEdit(true)
 									}}
 								>
-									<RightOutlined /> {item?.isBlocked ? "Activate" : "Block"}
+									{item?.isBlocked ? "Activate" : "Block"}
 								</div>
 							</div>
 						</Col>
