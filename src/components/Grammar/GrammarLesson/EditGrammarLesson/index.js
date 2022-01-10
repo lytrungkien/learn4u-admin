@@ -128,14 +128,23 @@ const EditGrammarLesson = () => {
 
 							<div className={cx("oneField")}>
 								<div className={cx("title")}>Add image</div>
-								{loading.image && <Spin />} &nbsp;&nbsp;
 								<input type="file" onChange={handleUploadImage} accept="image/*" />
+								<div>
+									{loading.image ? <Spin style={{ marginTop: '20px' }} /> : (
+										<img src={formData.imageUrl} alt="vocab" width={80} className={cx("box-img")} />
+									)}
+								</div>
 							</div>
 
 							<div className={cx("oneField")}>
 								<div className={cx("title")}>Add audio</div>
-								{loading.audio && <Spin />}  &nbsp;&nbsp;
 								<input type="file" onChange={handleUploadAudio} accept="audio/*" />
+								<div style={{ marginTop: '20px' }}>
+									{loading.audio ? <Spin /> : (
+										<audio controls src={formData.audioUrl}>
+										</audio>
+									)}
+								</div>
 							</div>
 
 						</div>
