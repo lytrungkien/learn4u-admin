@@ -64,8 +64,9 @@ const AdminAccount = () => {
 										className={cx("title")}
 									>Old password</div>
 									<input
+										type="password"
 										className={cx("value")}
-										placeholder="12345678"
+										placeholder=""
 										onChange={(e) => setOldPass(e.target.value)}
 										required
 									/>
@@ -80,8 +81,9 @@ const AdminAccount = () => {
 										className={cx("title")}
 									>New password</div>
 									<input
+										type="password"
 										className={cx("value")}
-										placeholder="12345678"
+										placeholder=""
 										onChange={(e) => setNewPass(e.target.value)}
 										required
 									/>
