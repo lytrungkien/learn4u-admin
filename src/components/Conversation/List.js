@@ -144,7 +144,7 @@ const List = ({ data }) => {
 									className={cx("edit")}
 									onClick={() => {
 										setLesson(item)
-										history.push(`/manage-dialogue/${item.lessonCode}`)
+										setIsModalEdit(true)
 									}}>
 									<EditOutlined /> Edit
 								</div>
@@ -202,6 +202,44 @@ const List = ({ data }) => {
 					<Form.Item wrapperCol={{ offset: 6, span: 16 }}>
 						<Button type="primary" htmlType="submit" style={{ width: '100%' }}>
 							Create
+						</Button>
+					</Form.Item>
+				</Form>
+			</Modal>
+
+			<Modal
+				title="Edit lesson"
+				visible={isModalEdit}
+				onCancel={() => setIsModalEdit(false)}
+				footer={null}
+			>
+				<Form
+					form={form}
+					name="Edit form"
+					labelCol={{ span: 6 }}
+					wrapperCol={{ span: 16 }}
+					initialValues={{ lessonCode: lesson?.lessonCode, name: lesson?.name }}
+					onFinish={onFinishEdit}
+					onFinishFailed={onFinishFailedEdit}
+					name="basic"
+				> {console.log("lesson", lesson)}
+					<Form.Item
+						label="Lesson code"
+						name="lessonCode"
+						rules={[{ required: true, message: 'Please input your lesson code!' }]}
+					>
+						<Input />
+					</Form.Item>
+					<Form.Item
+						label="Lesson name"
+						name="name"
+						rules={[{ required: true, message: 'Please input your lesson name!' }]}
+					>
+						<Input />
+					</Form.Item>
+					<Form.Item wrapperCol={{ offset: 6, span: 16 }}>
+						<Button type="primary" htmlType="submit" style={{ width: '100%' }}>
+							Save
 						</Button>
 					</Form.Item>
 				</Form>

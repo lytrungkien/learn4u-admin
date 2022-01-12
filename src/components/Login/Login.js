@@ -25,6 +25,7 @@ const Login = () => {
 			const res = await axios.post(`${URL}/api/Account/login`, data);
 			if (res.status === 200) {
 				window.localStorage.setItem("token-lingo-admin", res.data.token);
+				window.localStorage.setItem("username-admin", res.data.username);
 				history.push("/");
 				window.location.reload();
 			}

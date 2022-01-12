@@ -142,7 +142,7 @@ const List = ({ data }) => {
 							<div className={cx("group-button")}>
 								<div
 									className={cx("edit")}
-									onClick={() => {
+									onClick={() => { 
 										setLesson(item)
 										setIsModalEdit(true)
 									}}>

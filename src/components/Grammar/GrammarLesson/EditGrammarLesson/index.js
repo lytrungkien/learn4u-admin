@@ -150,11 +150,21 @@ const EditGrammarLesson = () => {
 						</div>
 					</div>
 
-					<div
-						className={cx("button")}
-						onClick={handleEditLesson}
-					>
-						EDIT GRAMMAR LESSON
+					<div style={{ marginTop: '30px' }}>
+						<span
+							className={cx("button")}
+							onClick={handleEditLesson}
+						>
+							EDIT GRAMMAR LESSON
+						</span>
+						&nbsp; &nbsp;
+						<span
+							className={cx("button")}
+							style={{ background: "#000000" }}
+							onClick={() => history.push(`/manage-grammar/lesson/${id}`)}
+						>
+							CANCEL
+						</span>
 					</div>
 				</div>
 			</div>

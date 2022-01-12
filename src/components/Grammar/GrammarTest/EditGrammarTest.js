@@ -134,7 +134,7 @@ const EditGrammarTest = () => {
 								<div className={cx("title")}>Comment</div>
 								<div className={cx("description")}>Explain the answer</div>
 								<textarea
-								defaultValue={lesson.comment}
+									defaultValue={lesson.comment}
 									placeholder='e.g. There is a certain word order in statements: Subject - Auxiliary - Predicate - Object. When we need to mention information about time and place'
 									className={cx("input")}
 									onChange={(e) => setFormData({ ...formData, comment: e.target.value })}
@@ -144,11 +144,21 @@ const EditGrammarTest = () => {
 						</div>
 					</div>
 
-					<div
-						className={cx("button")}
-						onClick={handleEditSentence}
-					>
-						EDIT SENTENCE
+					<div style={{ marginTop: '30px' }}>
+						<span
+							className={cx("button")}
+							onClick={handleEditSentence}
+						>
+							EDIT SENTENCE
+						</span>
+						&nbsp; &nbsp;
+						<span
+							className={cx("button")}
+							style={{ background: "#000000" }}
+							onClick={() => history.push(`/manage-grammar/test/${id}`)}
+						>
+							CANCEL
+						</span>
 					</div>
 				</div>
 			</div>
