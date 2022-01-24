@@ -68,7 +68,7 @@ const Login = () => {
 						</Form.Item>
 
 						<Form.Item name="remember" valuePropName="checked" >
-							<Checkbox>Tôi đồng ý với <a>điều khoản</a> và chính sách sử dụng</Checkbox>
+							<Checkbox>Remember Password</Checkbox>
 						</Form.Item>
 
 						<Form.Item >
